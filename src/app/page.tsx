@@ -1,52 +1,88 @@
-import Image from "next/image";
+import { profile } from "@/config/profile";
 
 export default function Home() {
-	return (
-		<div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-			<main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-				<Image className="dark:invert" src="/next.svg" alt="Next.js logo" width={180} height={38} priority />
-				<ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-					<li className="mb-2 tracking-[-.01em]">
-						Get started by editing{" "}
-						<code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-							src/app/page.tsx
-						</code>
-						.
-					</li>
-					<li className="tracking-[-.01em]">Save and see your changes instantly.</li>
-				</ol>
-
-				<div className="flex gap-4 items-center flex-col sm:flex-row">
-					<a
-						className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-						href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Read our docs
-					</a>
-				</div>
-			</main>
-			<footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
-					Learn
-				</a>
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-					Go to nextjs.org →
-				</a>
-			</footer>
-		</div>
-	);
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-100 to-fuchsia-100 dark:from-fuchsia-900 dark:via-rose-900 dark:to-pink-900 px-6 py-16">
+      <main className="mx-auto max-w-3xl">
+        <div className="relative overflow-hidden rounded-3xl border border-rose-200/60 bg-white/70 dark:bg-black/40 backdrop-blur-md shadow-2xl">
+          <div className="p-8 sm:p-12">
+            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10">
+              <div className="relative">
+                <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-pink-200 via-rose-200 to-fuchsia-200 blur-xl opacity-70"></div>
+                <img
+                  src={profile.photoUrl}
+                  alt={profile.name}
+                  className="relative z-10 h-40 w-40 sm:h-48 sm:w-48 rounded-full object-cover ring-4 ring-rose-300 shadow-xl"
+                />
+              </div>
+              <div className="text-center sm:text-left">
+                <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-rose-900 dark:text-rose-100">
+                  {profile.name}
+                </h1>
+                <p className="mt-2 text-lg font-medium text-rose-700 dark:text-rose-200">
+                  {profile.title}
+                </p>
+                {profile.location ? (
+                  <p className="mt-1 text-sm text-rose-600/80 dark:text-rose-300/80">
+                    {profile.location}
+                  </p>
+                ) : null}
+                <p className="mt-6 text-base leading-7 text-rose-800 dark:text-rose-100">
+                  {profile.bio}
+                </p>
+                <div className="mt-6 flex flex-wrap items-center justify-center sm:justify-start gap-3">
+                  {profile.socials?.map((s) => (
+                    <a
+                      key={s.href}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white px-4 py-2 text-sm font-semibold shadow hover:opacity-90 transition"
+                    >
+                      {s.label}
+                    </a>
+                  ))}
+                  {profile.email ? (
+                    <a
+                      href={`mailto:${profile.email}`}
+                      className="inline-flex items-center rounded-full border border-rose-300 bg-rose-50 text-rose-700 px-4 py-2 text-sm font-semibold shadow-sm hover:bg-rose-100 transition"
+                    >
+                      Say Hello
+                    </a>
+                  ) : null}
+                </div>
+              </div>
+            </div>
+            {profile.links && profile.links.length > 0 ? (
+              <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {profile.links.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group rounded-2xl border border-rose-200 bg-white/70 dark:bg-white/5 p-5 shadow hover:shadow-md transition"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-rose-900 dark:text-rose-100 font-semibold">
+                        {l.label}
+                      </span>
+                      <span className="text-rose-500 group-hover:translate-x-1 transition">
+                        →
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            ) : null}
+          </div>
+          <div className="border-t border-rose-200/60 bg-rose-50/60 dark:bg-rose-950/30 p-6 text-center">
+            <p className="text-sm text-rose-700 dark:text-rose-200">
+              Made with a hint of mystery and a lot of pink 💖
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
 }
