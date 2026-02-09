@@ -25,7 +25,7 @@ export default function RFB() {
     <ReactFloatingBalloons
       count={10}
       msgText="Kriti"
-      colors={["hotpink", "red", "purple", "fuchsia", "white"]}
+      colors={["red", "purple", "yellow", "blue", "orange"]}
     />
   );
 }

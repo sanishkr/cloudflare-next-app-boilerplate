@@ -3,7 +3,7 @@ import { profile } from "@/config/profile";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-100 to-fuchsia-100 dark:from-fuchsia-900 dark:via-rose-900 dark:to-pink-900 px-6 py-16">
+    <div className="min-h-screen animated-gradient px-6 py-16">
       <main className="mx-auto max-w-3xl">
         <div className="relative overflow-hidden rounded-3xl border border-rose-200/60 bg-white/70 dark:bg-black/40 backdrop-blur-md shadow-2xl">
           <div className="p-8 sm:p-12">
